@@ -1,0 +1,237 @@
+/* File: src/pages/AdminDashboard/Enrollments.css */
+
+/* ——— Base page & toolbar ——— */
+.enrollments-page {
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+/* ───────────────────────────────────────────────
+   SEARCH BOX  (icon + input)
+   ─────────────────────────────────────────────── */
+.search-box {
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 150px;
+}
+
+/* magnifier */
+.search-box .icon{
+  position:absolute;
+  left:0.8rem;
+  top:50%;
+  transform:translateY(-50%);
+  color:#888;
+  pointer-events:none;
+}
+
+/* input */
+.search-box input{
+  width:100%;
+  padding:0.5rem 1rem 0.5rem 2.2rem !important;   /* <- force this value */
+  border-radius:6px;
+  border:1px solid #ccc;
+  transition:border-color .2s, box-shadow .2s;
+  box-sizing:border-box;
+}
+
+.search-box input:focus {
+  border-color: #644191;
+  box-shadow: 0 0 0 3px rgba(106,90,205,.2);
+}
+/* New-enrollment button */
+.btn.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: #644191;  /* Changed from gradient */
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.btn.primary:hover {
+  background: #7a4fb3;  /* Changed from opacity */
+}
+
+/* ——— Table & borders ——— */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+}
+
+/* Header styles (same purple as courses/users) */
+.enrollments-table thead {
+  background: #644191;  /* Changed from #672072 */
+  color: #fff;
+}
+.enrollments-table th {
+  padding: .75rem 1rem;
+  border: 1px solid #a39b9b;
+  text-align: left;
+  user-select: none;
+  cursor: pointer;
+}
+.enrollments-table th.actions-col {
+  text-align: center;
+}
+
+/* Body rows & hover */
+.enrollments-table tbody tr {
+  background: #f4e3f5;  /* Match Courses */
+  transition: background .2s;
+}
+.enrollments-table tbody tr:hover {
+  background: #e3cce4;  /* Match Courses */
+}
+.enrollments-table td {
+  padding: .75rem 1rem;
+  border: 1px solid #a39b9b;
+  color: #333;
+}
+.enrollments-table td.actions-col {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Icon buttons */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin: 0 0.25rem;
+  color: #644191;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.icon-btn:hover {
+  color: #7a4fb3;
+}
+.icon-btn.trash:hover {
+  color: #7a4fb3;
+}
+
+/* Empty / loading state */
+.empty td {
+  text-align: center;
+  color: #999;
+}
+
+/* ——— Modal ——— */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .75rem;
+}
+@media (min-width: 480px) {
+  .grid2 { grid-template-columns: 1fr 1fr; }
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+.modal h3 {
+  margin-bottom: 1rem;
+}
+.modal textarea,
+.modal input,
+.modal select {
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .75rem;
+}
+
+/* ——— Responsive: table → cards ——— */
+@media (max-width: 768px) {
+  .table-container { overflow-x: hidden; }
+  .enrollments-table,
+  .enrollments-table thead,
+  .enrollments-table tbody,
+  .enrollments-table th,
+  .enrollments-table td,
+  .enrollments-table tr {
+    display: block;
+    width: 100%;
+  }
+  .enrollments-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .enrollments-table tr {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+  }
+  .enrollments-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+  }
+  .enrollments-table td:before {
+    position: absolute;
+    top: .75rem;
+    left: 1rem;
+    width: 45%;
+    padding-right: 1rem;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #555;
+    pointer-events: none;
+  }
+  .enrollments-table td:nth-of-type(1):before { content: var(--label-enrollment-id, "Enrollment ID"); }
+  .enrollments-table td:nth-of-type(2):before { content: var(--label-student, "Student"); }
+  .enrollments-table td:nth-of-type(3):before { content: var(--label-courses, "Courses"); }
+  .enrollments-table td:nth-of-type(4):before { content: var(--label-date, "Date"); }
+  .enrollments-table td:nth-of-type(5):before { content: var(--label-completed, "Completed"); }
+  .enrollments-table td:nth-of-type(6):before { content: var(--label-actions, "Actions"); }
+
+  .enrollments-table td:nth-of-type(6):before {
+    content: none !important;
+    display: none !important;
+  }
+  .enrollments-table td:nth-of-type(6) {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

@@ -1,0 +1,72 @@
+/* ---------- palette ---------- */
+:root{
+  --indigo:#6366f1;--emerald:#10b981;--rose:#f43f5e;
+  --grey-50:#f9fafb;--grey-100:#f3f4f6;--grey-200:#e5e7eb;
+  --grey-300:#d1d5db;--grey-700:#374151;
+}
+
+/* ---------- layout ---------- */
+*,*:before,*:after{box-sizing:border-box;}
+html,body{max-width:100%;overflow-x:hidden;font-family:'Segoe UI',system-ui,sans-serif;}
+.student-dashboard{padding:clamp(1rem,4vw,2.5rem);max-width:1280px;margin-inline:auto;display:grid;gap:2.5rem;}
+
+/* ---------- stat cards ---------- */
+.stats-overview{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(clamp(120px,20vw,200px),1fr));}
+.stat-card{display:flex;align-items:center;gap:1rem;background:#fff;border-radius:12px;padding:1.2rem 1.4rem;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.stat-icon{font-size:clamp(1.7rem,5vw,2.2rem);flex-shrink:0;}
+.stat-card h3{margin:0 0 .1rem;font-size:.9rem;font-weight:600;color:var(--grey-700);}
+.stat-card p{margin:0;font-size:clamp(1.3rem,5vw,1.8rem);font-weight:700;color:#111;}
+
+/* ---------- assignments table ---------- */
+.upcoming-assignments h2{margin-bottom:.8rem;font-size:1.1rem;font-weight:600;}
+.table-wrapper{overflow-x:auto;}
+.assignments-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px 12px 8px 8px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.assignments-table thead th{padding:.8rem 1rem;background:var(--grey-100);font-size:.9rem;font-weight:600;color:#444;text-align:left;}
+.assignments-table td{padding:.75rem 1rem;border-bottom:1px solid var(--grey-200);font-size:.9rem;color:#333;}
+.assignments-table tbody tr:hover{background:var(--grey-50);}
+.assignments-table tbody tr.empty td{text-align:center;}
+
+/* mobile cards ≤640px */
+@media(max-width:640px){
+  .assignments-table thead{display:none;}
+  .assignments-table tr{display:block;margin-bottom:1rem;border:1px solid var(--grey-300);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .assignments-table td{display:flex;justify-content:space-between;align-items:center;padding:.55rem .9rem;border:none;border-bottom:1px solid var(--grey-200);}
+  .assignments-table td:last-child{border:none;}
+  .assignments-table td::before{content:attr(data-label);font-weight:600;color:var(--grey-700);}
+}
+
+/* ---------- courses table (3 cols) ---------- */
+.courses-section{display:grid;gap:1.25rem;}
+.section-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.section-header h2{margin:0;font-size:1.1rem;font-weight:600;}
+
+.search-box{position:relative;flex:1 1 200px;min-width:0;}
+.search-box .icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:#888;pointer-events:none;}
+.search-box input{width:100%;background:var(--grey-50);border:1px solid var(--grey-200);border-radius:6px;padding:.45rem .8rem .45rem 2.3rem;font-size:.9rem;outline:none;}
+.search-box input:focus{border-color:var(--indigo);}
+
+.table-container{overflow-x:auto;}
+.courses-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px 12px 8px 8px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.courses-table thead th{background:var(--grey-100);padding:.85rem 1rem;font-size:.9rem;font-weight:600;color:#444;text-align:left;}
+.courses-table td{padding:.85rem 1rem;border-bottom:1px solid var(--grey-200);font-size:.9rem;color:#333;text-align:left;}
+.courses-table tbody tr:hover{background:var(--grey-50);}
+.courses-table tbody tr.empty td{text-align:center;}
+
+.view-course-btn{background:var(--indigo);color:#fff;border:none;padding:.38rem 1rem;border-radius:6px;font-size:.8rem;cursor:pointer;transition:background .2s;}
+.view-course-btn:hover{background:#4f52e3;}
+
+/* mobile course cards ≤640px */
+@media(max-width:640px){
+  .courses-table thead{display:none;}
+  .courses-table tr{display:block;margin-bottom:1rem;border:1px solid var(--grey-300);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .courses-table td{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;border:none;border-bottom:1px solid var(--grey-200);}
+  .courses-table td:last-child{border:none;text-align:right;}
+  .courses-table td::before{content:attr(data-label);font-weight:600;color:var(--grey-700);}
+}
+
+/* ---------- modal ---------- */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:grid;place-items:center;backdrop-filter:blur(2px);z-index:99;}
+.modal-content{background:#fff;border-radius:12px;padding:2rem 1.8rem;width:90%;max-width:480px;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.modal-content h2{margin:0 0 1rem;text-align:center;font-size:1.2rem;font-weight:600;}
+.btn{display:block;margin-inline:auto;background:var(--rose);color:#fff;border:none;padding:.5rem 1.3rem;border-radius:6px;font-size:.9rem;cursor:pointer;transition:background .2s;}
+.btn:hover{background:#d93551;}

@@ -1,0 +1,327 @@
+/* File: src/pages/AdminDashboard/Courses.module.css */
+
+/* ——— Base page & toolbar ——— */
+.coursesPage {
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* ───────────────────────────────────────────────
+   SEARCH BOX  (icon + input)
+   ─────────────────────────────────────────────── */
+.searchBox {
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 150px;
+}
+
+.searchBox .icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+.searchBox input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.2rem !important; /* <- force this value */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.searchBox input:focus {
+  border-color: #e3cce4;
+  box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.2);
+}
+
+/* Update dropdown styles */
+.toolbar select {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    flex: 0 0 160px;
+}
+
+.toolbar select option {
+    padding: 8px;
+}
+
+/* Hover state for all options */
+.toolbar select option:hover {
+    background-color: #e3cce4 !important;
+    color: #333 !important;
+}
+
+/* Selected/active state */
+.toolbar select option:checked,
+.toolbar select option:focus,
+.toolbar select option:active {
+    background-color: #e3cce4 !important;
+    color: #333 !important;
+}
+
+.btn.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: #644191;  /* Changed from gradient */
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.btn.primary:hover {
+  background: #7a4fb3;
+}
+
+/* ——— Table & borders ——— */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.coursesTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e0e0e0;
+}
+
+.coursesTable thead {
+  background: #644191;  /* Changed from #672072 */
+  color: #fff;
+}
+
+.coursesTable th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid #a39b9b;
+}
+
+/* BODY ROWS & hover */
+.coursesTable tbody tr {
+  background: #f4e3f5;  /* Changed from #f4e3f6 */
+  transition: background 0.2s;
+}
+
+.coursesTable tbody tr:hover {
+  background: #e3cce4;  /* Changed from #f4e3f8 */
+}
+
+.coursesTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  word-break: break-word;
+  border: 1px solid #a39b9b; /* cell border */
+  color: #333;
+}
+
+/* Inline edits */
+.inlineEdit {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+/* Icon buttons */
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin: 0 0.25rem;
+  color: #644191;  /* Updated from #4f46e5 */
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.iconBtn:hover {
+  color: #7a4fb3;  /* Updated from #6366f1 */
+}
+
+.iconBtn.trash:hover {
+  color: #7a4fb3;  /* Changed from tomato */
+}
+
+/* Empty / loading state */
+.empty td {
+  text-align: center;
+  color: #999;
+}
+
+/* ——— Modal ——— */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  .grid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.modal h3 {
+  margin-bottom: 1rem;
+}
+
+.modal textarea,
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* ——— Responsive: table → cards ——— */
+@media (max-width: 1010px) {
+  .tableContainer {
+    overflow-x: hidden;
+  }
+
+  .coursesTable,
+  .coursesTable thead,
+  .coursesTable tbody,
+  .coursesTable th,
+  .coursesTable td,
+  .coursesTable tr {
+    display: block;
+    width: 100%;
+  }
+
+  .coursesTable thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .coursesTable tr {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+  }
+
+  /* cells */
+  .coursesTable td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    color: #333;
+    text-align: left !important;
+  }
+
+  /* labels */
+  .coursesTable td:before {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    width: 45%;
+    padding-right: 1rem;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #555;
+  }
+
+  /* correct label list (9 columns) */
+  .coursesTable td:nth-of-type(1):before {
+    content: var(--label-name, "Name");
+  }
+
+  .coursesTable td:nth-of-type(2):before {
+    content: var(--label-description, "Description");
+  }
+
+  .coursesTable td:nth-of-type(3):before {
+    content: var(--label-duration, "Duration");
+  }
+
+  .coursesTable td:nth-of-type(4):before {
+    content: var(--label-instructor, "Instructor");
+  }
+
+  .coursesTable td:nth-of-type(5):before {
+    content: var(--label-price, "Price");
+  }
+
+  .coursesTable td:nth-of-type(6):before {
+    content: var(--label-enrolled, "Enrolled");
+  }
+
+  .coursesTable td:nth-of-type(7):before {
+    content: var(--label-start, "Start");
+  }
+
+  .coursesTable td:nth-of-type(8):before {
+    content: var(--label-end, "End");
+  }
+
+  .coursesTable td:nth-of-type(9):before {
+    content: var(--label-actions, "Actions");
+  }
+
+  /* Actions cell uses flex, no indent */
+  .coursesTable td:nth-of-type(9) {
+    padding-left: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .coursesTable td:nth-of-type(9):before {
+    content: none !important;
+    display: none !important;
+  }
+}
