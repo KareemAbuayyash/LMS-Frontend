@@ -34,7 +34,7 @@ A modern, responsive Learning Management System frontend built with React. This 
 
 ![alt text](<im/Screenshot 2025-05-23 150733.png>)
 
-![alt text](<im/im/Screenshot 2025-05-23 150705.png>)
+![alt text](<im/Screenshot 2025-05-23 150705.png>)
 
 ## Quiz Submissions Review
   Review and analyze student quiz performance:
